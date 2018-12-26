@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.wipro.topgear.hibernate.domain">
+    <class name="Employee" table="employees">
+        <id name="employeeId" column="id" />
+        <property name="employeeName" column="name" />
+        <property name="employeeBand" column="band" />
+        <property name="salary" column="salary" />
+        <one-to-one name="passport" class="com.wipro.topgear.hibernate.domain.Passport" cascade="save-update, delete, delete-orphan" />
+
+        <joined-subclass name="com.wipro.topgear.hibernate.domain.RegularEmployee" table="regular_employees">
+            <key column="employee_id" />
+            <property name="qplc" column="qplc" />
+        </joined-subclass>
+
+        <joined-subclass name="com.wipro.topgear.hibernate.domain.ContractEmployee" table="contract_employees">
+            <key column="employee_id" />
+            <property name="allowance" column="allowance" />
+        </joined-subclass>
+    </class>
+</hibernate-mapping>

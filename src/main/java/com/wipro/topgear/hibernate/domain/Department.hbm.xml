@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.wipro.topgear.hibernate.domain">
+    <class name="Department" table="departments">
+        <id name="id" column="id" />
+        <property name="name" column="name" />
+        <set name="employees" cascade="save-update, delete, delete-orphan">
+            <key>
+                <column name="department_id" />
+            </key>
+            <one-to-many class="com.wipro.topgear.hibernate.domain.Employee" />
+        </set>
+    </class>
+</hibernate-mapping>

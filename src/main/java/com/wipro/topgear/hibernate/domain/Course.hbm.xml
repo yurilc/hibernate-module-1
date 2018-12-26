@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.wipro.topgear.hibernate.domain">
+    <class name="Course" table="courses">
+        <id name="id" column="id" />
+        <property name="name" column="name" />
+        <set name="students" table="students_courses" inverse="true" lazy="true" cascade="all">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.wipro.topgear.hibernate.domain.Student">
+                <column name="student_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
